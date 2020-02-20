@@ -4,8 +4,8 @@ pipeline {
         stage('One') {
                 steps {
                        sshagent(['ec2-user']) {
-                             sh 'cd /home/ec2-user/'
-                             sh 'ls -ltr'
+                             sh 'uptime'
+                             sh 'hostname'
                                    }
                       }
         }

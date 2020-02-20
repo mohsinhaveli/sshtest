@@ -4,8 +4,7 @@ pipeline {
         stage('One') {
                 steps {
                        sshagent(['ec2-user']) {
-                             sh 'cd /home/mohsin.haveli/'
-                             sh 'ls -ltr'
+                             sh 'cd /home/mohsin.haveli | ls -ltr'
                              sh 'pwd'
                                    }
                       }

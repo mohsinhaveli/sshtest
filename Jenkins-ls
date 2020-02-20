@@ -6,6 +6,7 @@ pipeline {
                        sshagent(['ec2-user']) {
                              sh 'cd /home/mohsin.haveli/'
                              sh 'ls -ltr'
+                             sh 'pwd'
                                    }
                       }
         }

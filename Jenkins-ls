@@ -5,7 +5,7 @@ pipeline {
         stage('One') {
                 steps {
                        sshagent(['ec2-user']) {
-                             sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 54.227.63.205 uname -a'  
+                             sh 'ssh ec2-user@54.227.63.205 && hostname'  
                         
                              /sh 'ls -ltr'
                                    }

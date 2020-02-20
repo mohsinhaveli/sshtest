@@ -1,13 +1,15 @@
+ 
 pipeline {
     agent any
     stages {
         stage('One') {
                 steps {
                        sshagent(['ec2-user']) {
-                             sh 'cd /home/mohsin.haveli | ls -ltr'
-                             sh 'pwd'
+                             sh 'ssh -o StrictHostKeyChecking=no -l ec2-user 54.227.63.205 uname -a'  
+                        
+                             /sh 'ls -ltr'
                                    }
                       }
         }
     } 
-} 
+}   

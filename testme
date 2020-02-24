@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('One') {
                 steps {
-                        sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cp  //home//jenkinsuser//missingcode.tar.gz //home//mohsin', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                        sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cp  //home//jenkinsuser//missingcode.tar.gz //home//', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                        sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'tar -zxvf //home//mohsin//*.tar.gz', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])          
                                    }
                       }
         }

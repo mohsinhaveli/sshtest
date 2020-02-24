@@ -6,10 +6,9 @@ pipeline {
                     sshagent(['3440a6b4-8939-44cf-8332-32fe97657fd9']) {
     sh 'ssh -o StrictHostKeyChecking=no jenkinsuser@54.227.63.205 uptime'
     sh 'ssh -v jenkinsuser@54.227.63.205'
-    sh 'cd /home/ec2-user && ls'
+    sh 'scp mohsin jenkinsuser@54.227.63.205:/home/jenkinsuser'
 }
                                    }
                       }
         }
     } 
-   

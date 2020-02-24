@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage('One') {
+                steps {
+                      sh 'ssh -tt jenkinsuser@54.227.63.205'
+                      sh 'ls'
+                                   }
+                      }
+        }
+    } 
+   

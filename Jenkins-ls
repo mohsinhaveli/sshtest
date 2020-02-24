@@ -9,7 +9,8 @@ pipeline {
 
         stage ('run commands on server') {
               steps {
-                  sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//jenkinsuser', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                  sh 'ssh -tt jenkinsuser@54.227.63.205'
+                  sh 'pwd'
               }
         } 
     }

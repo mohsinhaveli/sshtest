@@ -6,9 +6,11 @@ pipeline {
                  sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//jenkinsuser', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'missingcode.tar.gz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)]) 
              }     
         }
-        stage ('run commands on server')
+
+        stage ('run commands on server') {
               steps {
                   sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//jenkinsuser', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
               }
+        } 
     }
 }

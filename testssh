@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('One') {
                 steps {
-                      sh 'ssh -tt jenkinsuser@54.227.63.205'
-                      sh 'ls'
+                      sshagent(['3440a6b4-8939-44cf-8332-32fe97657fd9']) {
+                        sh ' cd /home/jenkinsuser && ll'
+                      }
                                    }
                       }
         }

@@ -3,12 +3,11 @@ pipeline {
     stages {
         stage('One') {
                 steps {
-                      node {
-  sshagent (credentials: ['3440a6b4-8939-44cf-8332-32fe97657fd9']) {
-    sh 'ssh -o StrictHostKeyChecking=no -l jenkinsuser  54.227.63.205uname -a'
-  }
+                    sshagent(['3440a6b4-8939-44cf-8332-32fe97657fd9']) {
+    sh 'ssh -o StrictHostKeyChecking=no jenkinsuser@ 54.227.63.205uptime'
 }
                                    }
                       }
         }
     } 
+   

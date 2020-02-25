@@ -2,8 +2,8 @@ pipeline {
     agent any
     parameters {
         choice (name: 'Env', choices: ['DEV', 'QA', 'UAT', 'PROD'], description: 'Passing the Environment')
-        choice (name: 'server', choices: ['ss', 'sd', 'sv', 'sn'], description: 'Pass the server')
-        string (name: 'Path', defaultValue:"test.com", description: "Where to put the build!")
+        choice (name: 'server', choices: ['s3', 's4', 's5', 's6'], description: 'select the server')
+        choice (name: 'Path', choices: ['test.com', 'new.com'], description: 'select the site')
     }
     stages {
         stage('Deploying to server') {

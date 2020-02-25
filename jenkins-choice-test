@@ -7,7 +7,7 @@ pipeline {
       description: 'Passing the Environment'
         )
       choice ( 
-      name: 'server'
+      name: 'server',
       choices: ['ss', 'sd', 'sv', 'sn'],
       description: 'Pass the server'
       )

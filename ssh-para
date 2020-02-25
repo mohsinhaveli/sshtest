@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    parameters {
+        choice (name: 'Env', choices: ['DEV', 'QA', 'UAT', 'PROD'], description: 'Passing the Environment')
+        choice (name: 'server', choices: ['ss', 'sd', 'sv', 'sn'], description: 'Pass the server')
+        string (name: 'Path', defaultValue:"/home/jenkinsuser", description: "Where to put the build!")
+    }
+    stages {
+        stage('Deploying to server') {
+             steps {
+
+                 echo "The environment is ${params.Env}"
+                 echo "The server is ${params.server}"
+                  
+             }     
+        }
+        stage('checking choice 2') {
+             steps {
+                 
+                 sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls ${params.server} ', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                  
+             }     
+        }
+
+    }
+}

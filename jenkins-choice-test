@@ -3,12 +3,12 @@ pipeline {
     parameters {
         choice (
       name: 'Env',
-      choices: ['DEV', 'QA', 'UAT', 'PROD'],
+      choices: "DEV\QA\UAT\PROD",
       description: 'Passing the Environment'
         )
       choice ( 
       name: 'server'
-      choices: ['ss', 'sd', 'sv', 'sn'],
+      choices: "ss\sd\sv\sn",
       description: 'Pass the server'
       )
     }

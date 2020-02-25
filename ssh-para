@@ -3,7 +3,7 @@ pipeline {
     parameters {
         choice (name: 'Env', choices: ['DEV', 'QA', 'UAT', 'PROD'], description: 'Passing the Environment')
         choice (name: 'server', choices: ['ss', 'sd', 'sv', 'sn'], description: 'Pass the server')
-        string (name: 'Path', defaultValue:"jenkinsuser", description: "Where to put the build!")
+        string (name: 'Path', defaultValue:"test.com", description: "Where to put the build!")
     }
     stages {
         stage('Deploying to server') {
@@ -17,7 +17,7 @@ pipeline {
         stage('checking choice 2') {
              steps {
                  
-                 sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls /home/${params.Path}', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                 sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ls /srv/www/${params.path}', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                   
              }     
         }

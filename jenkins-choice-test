@@ -4,12 +4,12 @@ pipeline {
         choice (
       name: 'Env',
       choices: ['DEV', 'QA', 'UAT', 'PROD'],
-      description: 'Passing the Environment',
+      description: 'Passing the Environment'
         )
       choice ( 
       name: 'server'
-      choices: ['sa', 'sb', 'sc', 'sn'],
-      description: 'Pass the server',
+      choices: ['ss', 'sd', 'sv', 'sn'],
+      description: 'Pass the server'
       )
     }
     stages {

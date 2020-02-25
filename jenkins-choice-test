@@ -5,9 +5,12 @@ pipeline {
       name: 'Env',
       choices: ['DEV', 'QA', 'UAT', 'PROD'],
       description: 'Passing the Environment'
+        )
+      choice ( 
       name: 'server'
       choices: ['s6', 's5', 's4', 's3'],
-        )
+      description: 'Pass the server' 
+      )
     }
     stages {
         stage('Deploying to server') {
@@ -18,5 +21,12 @@ pipeline {
                   
              }     
         }
+        stage('checking choice 2') {
+             steps {
+                 echo "The server is ${params.server}"
+                  
+             }     
+        }
+
     }
 }

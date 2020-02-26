@@ -1,0 +1,23 @@
+
+pipeline {
+    agent any
+    environment {
+        def NOW = sh(script: "echo `date +%d-%m-%y`", returnStdout: true).trim()
+    }
+    parameters {
+        string (name: 'ServerName', defaultValue:"some server", description: "Dont change this field")
+        choice (name: 'codeinstance', choices: ['/srv/www/test.ipublishcentral.com', '/srv/www/new.ipublishcentral.com'], description: 'select the code instance')
+        string (name: 'sitename', defaultValue:"test", description: "enter site name above")
+    }
+    
+    stages {
+        stage('Deploying to server') {
+             steps {
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'tar -zcvf  /srv/buildbackups/${params.sitename}-$BUILD_NUMBER-${NOW}.tar.gz  ${params.codeinstance}/sites/${params.sitename}', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                     
+                   }
+             }       
+        }
+
+    }                  
+    

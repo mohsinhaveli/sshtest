@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Deploying to server') {
              steps {
-                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'tar -zcvf  /srv/buildbackups/${params.sitename}.$NOW.tar.gz  ${params.codeinstance}/sites/${params.sitename}', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "tar -zcvf  /srv/buildbackups/${params.sitename}.$NOW.tar.gz  ${params.codeinstance}/sites/${params.sitename}", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                      
                    }
              }       

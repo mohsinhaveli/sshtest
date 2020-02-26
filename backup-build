@@ -7,7 +7,7 @@ pipeline {
     parameters {
         string (name: 'ServerName', defaultValue:"some server", description: "Dont change this field")
         choice (name: 'codeinstance', choices: ['/srv/www/test.ipublishcentral.com', '/srv/www/new.ipublishcentral.com'], description: 'select the code instance')
-        string (name: 'sitename', defaultValue:"enter site name", description: "enter site name above")
+        string (name: 'sitename', defaultValue:"test", description: "enter site name above")
     }
     
     stages {

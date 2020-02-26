@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment {
-        def NOW = sh(script: "echo `date +%d-%m-%y`", returnStdout: true).trim()
+        def NOW = date +%d-%m-%y
     }
     parameters {
         string (name: 'ServerName', defaultValue:"some server", description: "Dont change this field")

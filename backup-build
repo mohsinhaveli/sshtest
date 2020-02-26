@@ -6,7 +6,7 @@ pipeline {
         choice (name: 'codeinstance', choices: ['/srv/www/test.ipublishcentral.com', '/srv/www/new.ipublishcentral.com'], description: 'select the code instance')
         string (name: 'sitename', defaultValue:"enter site name", description: "enter site name above")
     }
-    def NOW =  "$(date +"%Y-%d-%m-%T")"
+    def NOW =  "(date +"%Y-%d-%m-%T")"
     stages {
         stage('Deploying to server') {
              steps {

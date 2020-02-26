@@ -1,0 +1,22 @@
+
+pipeline {
+    agent any
+    parameters {
+        string (name: 'ServerName', defaultValue:"some server", description: "Dont change this field")
+        choice (name: 'codeinstance', choices: ['/srv/www/test.ipublishcentral.com', '/srv/www/new.ipublishcentral.com'], description: 'select the code instance')
+        string (name: 'sitename', defaultValue:"enter site name", description: "enter site name above")
+    }
+    def NOW =  "$(date +"%Y-%d-%m-%T")"
+    stages {
+        stage('Deploying to server') {
+             steps {
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "tar -zcvf  /srv/buildbackups/${params.sitename}.$NOW.tar.gz  ${params.codeinstance}/sites/${params.sitename}" , execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'rm -f /home/jenkinsuser/*.tar.gz', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//jenkinsuser', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.tar.gz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])                   
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "tar -zxvf /home/jenkinsuser/*.tar.gz -C  ${params.codeinstance}/sites/", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                   }
+             }       
+        }
+
+    }                  
+    

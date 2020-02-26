@@ -20,9 +20,15 @@ pipeline {
              stage('clearing jenkinsuser directory') {
              steps {
                      sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'rm -f /home/jenkinsuser/*.tar.gz', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//jenkinsuser', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.tar.gz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                    }
-             }      
-        }
+             } 
+             stage('copying build to jenkinsuser directory') {
+             steps {
+                     sshPublisher(publishers: [sshPublisherDesc(configName: 'test-jenkins', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//jenkinsuser', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.tar.gz')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                   }
+             }
+      }
 
     }                  
     
